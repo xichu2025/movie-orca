@@ -1,7 +1,10 @@
 import { get } from "@/lib/request";
 
 // 使用超过 30 种过滤器和排序选项查找电影
-export const discover_movie = (data: any) => {
+export const discover_movie = (data: any, url: string) => {
+  if (url) {
+    return get(url + "/api/discover-movie", data);
+  }
   return get("/api/discover-movie", data);
 };
 
