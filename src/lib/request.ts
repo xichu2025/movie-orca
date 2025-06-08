@@ -60,6 +60,8 @@ const request = async (url: string, options = {}) => {
     const { url: interceptedUrl, options: interceptedOptions } =
       interceptRequest(url, options);
 
+    console.log("请求拦截后的URL:", interceptedUrl);
+    console.log("请求拦截后的选项:", interceptedOptions);
     // 发送请求
     const response = await fetch(interceptedUrl, interceptedOptions);
 
