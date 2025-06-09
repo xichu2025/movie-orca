@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import menu from "@/assets/icon/menu.svg"; // Assuming you have a menu icon in your assets
+import menu from "@/assets/icon/menu.svg";
+import aaa from "@/assets/icon/1.jpg";
+import bbb from "@/assets/icon/2.jpg";
+import ccc from "@/assets/icon/3.jpg";
+import ddd from "@/assets/icon/4.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,9 +14,15 @@ const Navbar = () => {
     <nav className="bg-gray-900/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl text-white font-bold">
+          {/* <span className="text-2xl text-white font-bold">
             Movie<span className="text-[#7D3FCD]">Orca</span>
-          </span>
+          </span> */}
+          <Image
+            src={ddd}
+            alt="Movie Orca"
+            width={90}
+            className="rounded-sm"
+          ></Image>
         </Link>
 
         {/* Desktop Navigation */}

@@ -14,12 +14,12 @@ const HeroSection = () => {
       }}
     >
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-        <div className="max-w-3xl animate-fade-in">
-          <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-tight mb-4">
-            Dive into the <span className="text-[#7D3FCD]">Ocean</span> of
-            Cinema
+        <div className="max-w-4xl animate-fade-in">
+          <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-tight mb-8">
+            <span className="text-[#7d3fcd]">Movie Orca</span>
+            <span> - Dive into the Ocean of Cinema</span>
           </h1>
-          <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mb-8 max-w-2xl">
+          <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mb-12 max-w-2xl">
             Movie Orca is your ultimate destination for discovering, exploring,
             and experiencing the world of cinema. From blockbuster hits to
             independent gems, we have got you covered.
