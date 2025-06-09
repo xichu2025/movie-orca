@@ -1,7 +1,7 @@
-import MovieDetails from "@/views/MovieDetails";
+// import MovieDetails from "@/views/MovieDetails";
 import { getSEOTags } from "@/lib/seo";
-import { DetailsProps } from "@/lib/interface";
-import { movie_details } from "@/lib/api";
+// import { DetailsProps } from "@/lib/interface";
+// import { movie_details } from "@/lib/api";
 
 export async function generateMetadata() {
   return getSEOTags({
@@ -26,7 +26,7 @@ export async function generateMetadata() {
   });
 }
 
-export default async function Details({ params }: DetailsProps) {
+export default async function Details({ params }: any) {
   // const res = await movie_details({ movie_id: params.id });
 
   // return <MovieDetails detailsData={res} id={params.id} />;
