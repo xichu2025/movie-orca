@@ -27,7 +27,9 @@ export async function generateMetadata() {
 }
 
 export default async function Details({ params }: DetailsProps) {
-  const res = await movie_details({ movie_id: params.id });
+  // const res = await movie_details({ movie_id: params.id });
 
-  return <MovieDetails detailsData={res} id={params.id} />;
+  // return <MovieDetails detailsData={res} id={params.id} />;
+
+  return <div>wewqwq</div>;
 }
