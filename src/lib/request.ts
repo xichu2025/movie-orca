@@ -1,12 +1,12 @@
 // 请求拦截器
 const interceptRequest = (url: string, options: any) => {
   // 自动添加baseURL
-  // const fullUrl = url.startsWith("http")
-  //   ? url
-  //   : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith("http")
+    ? url
+    : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
 
-  const isServer = typeof window === "undefined";
-  const fullUrl = `https://movie-orca-api.xichufuture.workers.dev${url}`;
+  // const isServer = typeof window === "undefined";
+  // const fullUrl = `https://movie-orca-api.xichufuture.workers.dev${url}`;
 
   console.log("请求的完整URL:", fullUrl);
 
