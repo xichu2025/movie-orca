@@ -7,7 +7,7 @@ const interceptRequest = (url: string, options: any) => {
 
   const isServer = typeof window === "undefined";
   const fullUrl = isServer
-    ? url // 服务端用相对路径，避免递归
+    ? `${process.env.API_BASE_URL}${url}${url}`
     : url.startsWith("http")
     ? url
     : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
