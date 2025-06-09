@@ -35,7 +35,7 @@
     "wrangler": "4.12.0"
   },
   "scripts": {
-    "build": "NEXT_PRIVATE_STANDALONE=true next build",
+    "build": "NEXT_PRIVATE_STANDALONE=true next build && rm -rf .opennext/cache",
     "postbuild": "opennextjs-cloudflare build -s",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
     "check": "npm run build && tsc && wrangler deploy --dry-run",
