@@ -25,10 +25,11 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const res = await discover_movie({ page: 1 });
-  const movies = res.results || [];
+  console.log(121212112);
+  // const res = await discover_movie({ page: 1 });
+  // const movies = res.results || [];
 
-  // const movies: any = [];
+  const movies: any = [];
 
   return <MovieList movies={movies} />;
 }
