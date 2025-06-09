@@ -1,6 +1,6 @@
 # Next.js Framework Starter
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/next-starter-template)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/movie-orca)
 
 <!-- dash-content-start -->
 
@@ -11,10 +11,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
 
 ```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/next-starter-template
+npm create cloudflare@latest -- --template=cloudflare/templates/movie-orca
 ```
 
-A live public deployment of this template is available at [https://next-starter-template.templates.workers.dev](https://next-starter-template.templates.workers.dev)
+A live public deployment of this template is available at [https://movie-orca.templates.workers.dev](https://movie-orca.templates.workers.dev)
 
 ## Getting Started
 
