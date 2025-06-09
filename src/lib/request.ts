@@ -7,7 +7,7 @@ const interceptRequest = (url: string, options: any) => {
 
   const isServer = typeof window === "undefined";
   const fullUrl = isServer
-    ? `${process.env.API_BASE_URL}${url}${url}`
+    ? `${process.env.API_BASE_URL}${url}`
     : url.startsWith("http")
     ? url
     : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
