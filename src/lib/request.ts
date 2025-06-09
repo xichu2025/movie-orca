@@ -7,7 +7,7 @@ const interceptRequest = (url: string, options: any) => {
 
   const isServer = typeof window === "undefined";
   const fullUrl = isServer
-    ? `https://movie-orca.xichufuture.workers.dev${url}`
+    ? `https://movie-orca-api.xichufuture.workers.dev${url}`
     : url.startsWith("http")
     ? url
     : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
