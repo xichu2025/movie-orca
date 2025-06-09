@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+// import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <AntdRegistry>{children}</AntdRegistry>
+        {/* <AntdRegistry>{children}</AntdRegistry> */}
+        {children}
       </body>
     </html>
   );

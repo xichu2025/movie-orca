@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Button, Tag } from "antd";
+// import { Button, Tag } from "antd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -111,13 +111,14 @@ export default function MovieDetails(params: any) {
               <div className="flex flex-wrap items-center">
                 <span className="font-semibold mr-2">Genres:</span>
                 {detailsData.genres?.map((item: any, index: number) => (
-                  <Tag
-                    key={item.id}
-                    color={colors[index]}
-                    style={{ marginTop: 4, marginBottom: 4 }}
-                  >
-                    {item.name}
-                  </Tag>
+                  // <Tag
+                  //   key={item.id}
+                  //   color={colors[index]}
+                  //   style={{ marginTop: 4, marginBottom: 4 }}
+                  // >
+                  //   {item.name}
+                  // </Tag>
+                  <div key={item.id}>dshfkjdsjsnkd</div>
                 ))}
               </div>
 
@@ -137,13 +138,14 @@ export default function MovieDetails(params: any) {
                 </span>
                 {detailsData.production_companies?.map(
                   (item: any, index: number) => (
-                    <Tag
-                      key={item.id}
-                      color={colors[index]}
-                      style={{ marginTop: 4, marginBottom: 4 }}
-                    >
-                      {item.name}
-                    </Tag>
+                    // <Tag
+                    //   key={item.id}
+                    //   color={colors[index]}
+                    //   style={{ marginTop: 4, marginBottom: 4 }}
+                    // >
+                    //   {item.name}
+                    // </Tag>
+                    <div key={item.id}>dshfkjdsjsnkd</div>
                   )
                 )}
               </div>
@@ -154,13 +156,14 @@ export default function MovieDetails(params: any) {
                 </span>
                 {detailsData.production_countries?.map(
                   (item: any, index: number) => (
-                    <Tag
-                      key={item.id}
-                      color={colors[index]}
-                      style={{ marginTop: 4, marginBottom: 4 }}
-                    >
-                      {item.name}
-                    </Tag>
+                    // <Tag
+                    //   key={item.id}
+                    //   color={colors[index]}
+                    //   style={{ marginTop: 4, marginBottom: 4 }}
+                    // >
+                    //   {item.name}
+                    // </Tag>
+                    <div key={item.id}>dshfkjdsjsnkd</div>
                   )
                 )}
               </div>
@@ -169,14 +172,15 @@ export default function MovieDetails(params: any) {
                 <span className="font-semibold mr-2">Spoken Languages:</span>
                 {detailsData.spoken_languages?.map(
                   (item: any, index: number) => (
-                    <Tag
-                      key={item.id}
-                      color={colors[index]}
-                      bordered={false}
-                      style={{ marginTop: 4, marginBottom: 4 }}
-                    >
-                      {item.name}
-                    </Tag>
+                    // <Tag
+                    //   key={item.id}
+                    //   color={colors[index]}
+                    //   bordered={false}
+                    //   style={{ marginTop: 4, marginBottom: 4 }}
+                    // >
+                    //   {item.name}
+                    // </Tag>
+                    <div key={item.id}>dshfkjdsjsnkd</div>
                   )
                 )}
               </div>
