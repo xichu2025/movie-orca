@@ -32,7 +32,15 @@ export async function generateMetadata() {
 export default async function Details({ params }: any) {
   const resolvedParams = await params;
   const apiUrl = `https://api.themoviedb.org/3/movie/950387?api_key=04bff320afae390d0992cf2e9a825062`;
-  console.log(44444, apiUrl);
+  const rrr = `${process.env.TMDB_API_BASE_URL}/3/movie/950387?api_key=${process.env.TMDB_API_KEY}`;
+
+  console.log(33333, apiUrl);
+  console.log(
+    44444,
+    process.env.TMDB_API_BASE_URL,
+    process.env.TMDB_API_KEY,
+    rrr
+  );
 
   // const response = await fetch(apiUrl, {
   //   next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
@@ -79,5 +87,10 @@ export default async function Details({ params }: any) {
   // // 直接解析为 JSON 对象
   // const freshData = await response.json();
 
-  return <MovieDetails id={resolvedParams.id} />;
+  return (
+    <div>
+      <MovieDetails id={resolvedParams.id} />
+      <div>{rrr}</div>
+    </div>
+  );
 }
