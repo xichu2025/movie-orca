@@ -26,6 +26,8 @@ export async function generateMetadata() {
   });
 }
 
+export const runtime = "edge";
+
 export default async function Details({ params }: any) {
   const resolvedParams = await params;
   const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/${resolvedParams.id}?api_key=${process.env.TMDB_API_KEY}`;
