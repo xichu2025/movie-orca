@@ -33,6 +33,17 @@ export default async function Details({ params }: any) {
   const resolvedParams = await params;
   const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/950387?api_key=${process.env.TMDB_API_KEY}`;
 
+  // 2. 在服务器上执行 fetch (这是修复问题的关键)
+  let movieData = null;
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      movieData = await response.json();
+    }
+  } catch (error) {
+    console.error("获取详情失败:", error);
+  }
+
   return (
     <div>
       <div style={{ marginTop: 100 }}>{apiUrl}</div>
