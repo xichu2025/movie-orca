@@ -3,7 +3,7 @@ import { getSEOTags } from "@/lib/seo";
 // import { DetailsProps } from "@/lib/interface";
 // import { movie_details } from "@/lib/api";
 
-// export const runtime = "edge";
+export const runtime = "edge";
 
 export async function generateMetadata() {
   return getSEOTags({
