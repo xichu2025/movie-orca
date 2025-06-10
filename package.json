@@ -37,8 +37,7 @@
     "wrangler": "4.12.0"
   },
   "scripts": {
-    "build": "rm -rf .next .open-next node_modules package-lock.json && npm cache clean --force && npm install && next build",
-    "postbuild": "opennextjs-cloudflare build -s",
+    "build": "next build",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
     "check": "npm run build && tsc && wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
