@@ -13,7 +13,7 @@ const Testimonials = () => {
       role: "Film Enthusiast",
       rating: 5,
       content:
-        "Movie Orca has completely transformed how I discover new movies. The recommendation system is incredibly accurate, and I love the detailed reviews. It's like having a personal film critic at my fingertips!",
+        "MovieOrca has completely transformed how I discover new movies. The recommendation system is incredibly accurate, and I love the detailed reviews. It's like having a personal film critic at my fingertips!",
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const Testimonials = () => {
       role: "Regular Moviegoer",
       rating: 5,
       content:
-        "I've tried many movie apps, but none compare to Movie Orca. The interface is clean, the information is comprehensive, and I especially appreciate the showtimes feature. It's my go-to app for everything movie-related.",
+        "I've tried many movie apps, but none compare to MovieOrca. The interface is clean, the information is comprehensive, and I especially appreciate the showtimes feature. It's my go-to app for everything movie-related.",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const Testimonials = () => {
       role: "Film Student",
       rating: 4,
       content:
-        "As a film student, I need in-depth analysis and access to a wide range of films. Movie Orca delivers both. The database is extensive, and the community discussions have helped me gain new perspectives on classic and contemporary films.",
+        "As a film student, I need in-depth analysis and access to a wide range of films. MovieOrca delivers both. The database is extensive, and the community discussions have helped me gain new perspectives on classic and contemporary films.",
     },
   ];
 
@@ -43,7 +43,7 @@ const Testimonials = () => {
             What Our <span className="text-[#7D3FCD]">Users Say</span>
           </h2>
           <h3 className="text-gray-400 max-w-2xl mx-auto">
-            Join thousands of movie enthusiasts who trust Movie Orca for their
+            Join thousands of movie enthusiasts who trust MovieOrca for their
             cinematic journey.
           </h3>
         </div>

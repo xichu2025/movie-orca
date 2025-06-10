@@ -21,7 +21,7 @@ const CTA = () => {
             Are you ready to be embedded in the ocean of movies?
           </h2>
           <p className="text-gray-300 text-lg mb-8">
-            Join over 10 million movie lovers who use Movie Orca to discover
+            Join over 10 million movie lovers who use MovieOrca to discover
             their next favorite film. Get early access to personalized
             recommendations, exclusive content and trailers without
             registration.

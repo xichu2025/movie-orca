@@ -155,7 +155,7 @@ export default function MovieDetails(params: any) {
                 {detailsData.production_countries?.map(
                   (item: any, index: number) => (
                     <Tag
-                      key={item.id}
+                      key={item.name}
                       color={colors[index]}
                       style={{ marginTop: 4, marginBottom: 4 }}
                     >
@@ -170,7 +170,7 @@ export default function MovieDetails(params: any) {
                 {detailsData.spoken_languages?.map(
                   (item: any, index: number) => (
                     <Tag
-                      key={item.id}
+                      key={item.name}
                       color={colors[index]}
                       bordered={false}
                       style={{ marginTop: 4, marginBottom: 4 }}

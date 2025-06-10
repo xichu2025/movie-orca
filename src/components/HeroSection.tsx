@@ -20,7 +20,7 @@ const HeroSection = () => {
             <span> - Dive into the Ocean of Cinema</span>
           </h1>
           <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mb-12 max-w-2xl">
-            Movie Orca is your ultimate destination for discovering, exploring,
+            MovieOrca is your ultimate destination for discovering, exploring,
             and experiencing the world of cinema. From blockbuster hits to
             independent gems, we have got you covered.
           </p>

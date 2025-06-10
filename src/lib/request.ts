@@ -5,11 +5,6 @@ const interceptRequest = (url: string, options: any) => {
     ? url
     : `${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`;
 
-  // const isServer = typeof window === "undefined";
-  // const fullUrl = `https://movie-orca-api.xichufuture.workers.dev${url}`;
-
-  console.log("请求的完整URL:", fullUrl);
-
   // 添加默认请求头
   const headers = {
     "Content-Type": "application/json",
@@ -65,8 +60,9 @@ const request = async (url: string, options = {}) => {
     const { url: interceptedUrl, options: interceptedOptions } =
       interceptRequest(url, options);
 
-    console.log("请求拦截后的URL:", interceptedUrl);
-    console.log("请求拦截后的选项:", interceptedOptions);
+    // console.log("请求拦截后的URL:", interceptedUrl);
+    // console.log("请求拦截后的选项:", interceptedOptions);
+
     // 发送请求
     const response = await fetch(interceptedUrl, interceptedOptions);
 
