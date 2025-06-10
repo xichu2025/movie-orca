@@ -42,10 +42,5 @@ export default async function Home() {
   const res: any = await response.json();
   const movies = res?.results || [];
 
-  return (
-    <div>
-      <div style={{ marginTop: 100 }}>{apiUrl}</div>
-      <MovieList movies={movies} />
-    </div>
-  );
+  return <MovieList movies={movies} />;
 }

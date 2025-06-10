@@ -1,10 +1,7 @@
 import MovieDetails from "@/views/MovieDetails";
 import { getSEOTags } from "@/lib/seo";
-import MovieList from "@/views/MovieList";
 // import { DetailsProps } from "@/lib/interface";
 // import { movie_details } from "@/lib/api";
-
-export const runtime = "edge";
 
 export async function generateMetadata() {
   return getSEOTags({
@@ -31,23 +28,19 @@ export async function generateMetadata() {
 
 export default async function Details({ params }: any) {
   const resolvedParams = await params;
-  const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/950387?api_key=${process.env.TMDB_API_KEY}`;
+  const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/${resolvedParams.id}?api_key=${process.env.TMDB_API_KEY}`;
 
-  // 2. 在服务器上执行 fetch (这是修复问题的关键)
-  let movieData = null;
-  try {
-    const response = await fetch(apiUrl);
-    if (response.ok) {
-      movieData = await response.json();
-    }
-  } catch (error) {
-    console.error("获取详情失败:", error);
+  const response = await fetch(apiUrl, {
+    next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
+    // cache: 'force-cache' // 默认行为，除非指定 revalidate: 0 或 no-store
+    // cache: 'no-store' // 完全禁用缓存，每次请求都重新获取
+  });
+
+  if (!response.ok) {
+    throw new Error(`API 请求失败: ${response.status}`);
   }
 
-  return (
-    <div>
-      <div style={{ marginTop: 100 }}>{apiUrl}</div>
-      {/* <MovieDetails id={resolvedParams.id} /> */}
-    </div>
-  );
+  const freshData: any = await response.json();
+
+  return <MovieDetails detailsData={freshData} id={resolvedParams.id} />;
 }
