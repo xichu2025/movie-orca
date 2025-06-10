@@ -56,7 +56,7 @@ export default function MovieList(params: any) {
   }, [hasMore, loading]);
 
   useEffect(() => {
-    get_discover_movie(page);
+    // get_discover_movie(page);
   }, [page]);
 
   function MovieSkeleton() {
