@@ -4,6 +4,8 @@ import { redis } from "@/lib/redis";
 const CACHE_KEY_PREFIX = "items_page_"; // 分页缓存前缀
 const CACHE_TTL = 60 * 60 * 24; // 缓存24小时（单位：秒）
 
+export const runtime = "edge";
+
 // 支持 GET 查询参数
 export async function GET(request: Request) {
   try {

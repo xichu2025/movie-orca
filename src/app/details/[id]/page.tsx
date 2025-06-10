@@ -3,6 +3,8 @@ import { getSEOTags } from "@/lib/seo";
 // import { DetailsProps } from "@/lib/interface";
 // import { movie_details } from "@/lib/api";
 
+export const runtime = "edge";
+
 export async function generateMetadata() {
   return getSEOTags({
     title: "Movie Details - Plot Summary/Cast/Release Information",

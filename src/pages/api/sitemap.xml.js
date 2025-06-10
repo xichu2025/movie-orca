@@ -1,6 +1,8 @@
 // pages/api/sitemap.xml.js
 import { SitemapStream, streamToPromise } from "sitemap";
 
+export const runtime = "edge";
+
 // 静态页面sitemap
 const staticSitemapUrl = [
   {
