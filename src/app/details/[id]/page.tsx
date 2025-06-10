@@ -3,7 +3,7 @@ import { getSEOTags } from "@/lib/seo";
 // import { DetailsProps } from "@/lib/interface";
 // import { movie_details } from "@/lib/api";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function generateMetadata() {
   return getSEOTags({
@@ -32,6 +32,8 @@ export default async function Details({ params }: any) {
   const resolvedParams = await params;
   const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/${resolvedParams.id}?api_key=${process.env.TMDB_API_KEY}`;
 
+  console.log(44444, apiUrl);
+
   const response = await fetch(apiUrl, {
     next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
     // cache: 'force-cache' // 默认行为，除非指定 revalidate: 0 或 no-store
@@ -41,9 +43,8 @@ export default async function Details({ params }: any) {
   if (!response.ok) {
     throw new Error(`API 请求失败: ${response.status}`);
   }
-
-  const freshData: any = await response.json();
-  console.log("freshData", freshData);
+  // 直接解析为 JSON 对象
+  const freshData = await response.json();
 
   return <MovieDetails detailsData={freshData} id={resolvedParams.id} />;
 }
