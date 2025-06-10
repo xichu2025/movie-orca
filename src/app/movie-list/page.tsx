@@ -44,7 +44,7 @@ export default async function Home() {
 
   return (
     <div>
-      <div style={{ marginTop: 60 }}>{apiUrl}</div>
+      <div style={{ marginTop: 100 }}>{apiUrl}</div>
       <MovieList movies={movies} />
     </div>
   );
