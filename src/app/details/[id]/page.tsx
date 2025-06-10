@@ -31,7 +31,7 @@ export async function generateMetadata() {
 
 export default async function Details({ params }: any) {
   const resolvedParams = await params;
-  const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/${resolvedParams.id}?api_key=${process.env.TMDB_API_KEY}`;
+  const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/movie/950387?api_key=${process.env.TMDB_API_KEY}`;
   console.log(44444, apiUrl);
 
   const response = await fetch(apiUrl, {
