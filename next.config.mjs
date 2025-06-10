@@ -11,6 +11,13 @@ const nextConfig = {
   images: {
     domains: ["image.tmdb.org"],
   },
+  webpack: (config, { isServer, dev }) => {
+    // 只在生产环境构建时禁用缓存
+    if (!dev) {
+      config.cache = false;
+    }
+    return config;
+  },
   async rewrites() {
     return [
       {
