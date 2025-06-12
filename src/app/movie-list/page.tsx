@@ -28,19 +28,16 @@ export const runtime = "edge";
 
 export default async function Home({ searchParams }: any) {
   const resolvedSearchParams = await searchParams;
+  const page = Number(resolvedSearchParams.page) || 1;
   const query = resolvedSearchParams?.query || "";
   let apiUrl = "";
 
   if (query) {
     // 搜索
-    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/search/multi?api_key=${
-      process.env.TMDB_API_KEY
-    }&query=${query}&include_adult=false&language=en-US&page=${1}`;
+    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/search/multi?api_key=${process.env.TMDB_API_KEY}&query=${query}&include_adult=false&language=en-US&page=${page}`;
   } else {
     // 电影列表
-    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${
-      process.env.TMDB_API_KEY
-    }&include_adult=false&include_video=false&language=en-US&page=${1}&sort_by=popularity.desc`;
+    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
   }
 
   const response = await fetch(apiUrl, {
@@ -76,7 +73,7 @@ export default async function Home({ searchParams }: any) {
 
   const genre = resolvedSearchParams?.genre || "";
   if (genre) {
-    const apiUrl3 = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genre}`;
+    const apiUrl3 = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genre}&page=${page}`;
     const response3 = await fetch(apiUrl3, {
       next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
       // cache: 'force-cache' // 默认行为，除非指定 revalidate: 0 或 no-store
@@ -91,5 +88,13 @@ export default async function Home({ searchParams }: any) {
     movies = res3.results || [];
   }
 
-  return <MovieList movies={movies} genres={genres} selectedGenre={genre} />;
+  return (
+    <MovieList
+      movies={movies}
+      genres={genres}
+      selectedGenre={genre}
+      page={page}
+      total_pages={res.total_pages}
+    />
+  );
 }

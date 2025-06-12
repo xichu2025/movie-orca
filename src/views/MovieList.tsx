@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Pagination } from "antd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,75 +19,82 @@ export default function MovieList(params: any) {
     Number(params.selectedGenre) || null
   );
 
+  const page = params.page || 1;
+  const totalPages = params.total_pages || 1;
+  // 分页切换
+  const handlePageChange = async (pageNum: number) => {
+    // 保留当前筛选条件
+    const genreQuery = selectedGenre ? `&genre=${selectedGenre}` : "";
+    window.location.href = `/movie-list?page=${pageNum}${genreQuery}`;
+  };
+
   // 分类点击时筛选（这里只是示例，实际可根据需要请求新数据或跳转）
   const handleGenreClick = (genreId: number) => {
     setSelectedGenre(genreId);
-    // 你可以在这里调用 get_discover_movie 或跳转到带 genre 参数的路由
-    // 例如：get_discover_movie(1, genreId);
-    // 或 window.location.href = `/movie-list?genre=${genreId}`;
     window.location.href = `/movie-list?genre=${genreId}`;
   };
 
-  const [movies, setMovies]: any = useState(params.movies || []);
-  const [page, setPage] = useState(2);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const pageRef = useRef(page);
+  const movies = params.movies || [];
+  // const [movies, setMovies]: any = useState(params.movies || []);
+  // const [page, setPage] = useState(2);
+  // const [hasMore, setHasMore] = useState(true);
+  // const [loading, setLoading] = useState(false);
+  // const pageRef = useRef(page);
 
-  useEffect(() => {
-    pageRef.current = page;
-  }, [page]);
+  // useEffect(() => {
+  //   pageRef.current = page;
+  // }, [page]);
 
-  // 获取电影列表
-  const get_discover_movie = async (pageNum: number) => {
-    setLoading(true);
-    const res = await discover_movie({ page: pageNum });
-    if (res?.results?.length) {
-      setMovies((prev: any) =>
-        pageNum === 1 ? res.results : [...prev, ...res.results]
-      );
-      setHasMore(res.page < res.total_pages);
-    } else {
-      setHasMore(false);
-    }
-    setLoading(false);
-  };
+  // // 获取电影列表
+  // const get_discover_movie = async (pageNum: number) => {
+  //   setLoading(true);
+  //   const res = await discover_movie({ page: pageNum });
+  //   if (res?.results?.length) {
+  //     setMovies((prev: any) =>
+  //       pageNum === 1 ? res.results : [...prev, ...res.results]
+  //     );
+  //     setHasMore(res.page < res.total_pages);
+  //   } else {
+  //     setHasMore(false);
+  //   }
+  //   setLoading(false);
+  // };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 100 >=
-          document.documentElement.offsetHeight &&
-        hasMore &&
-        !loading
-      ) {
-        // 只允许一次触发
-        setLoading(true);
-        setPage(pageRef.current + 1);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasMore, loading]);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (
+  //       window.innerHeight + document.documentElement.scrollTop + 100 >=
+  //         document.documentElement.offsetHeight &&
+  //       hasMore &&
+  //       !loading
+  //     ) {
+  //       // 只允许一次触发
+  //       setLoading(true);
+  //       setPage(pageRef.current + 1);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [hasMore, loading]);
 
-  useEffect(() => {
-    // get_discover_movie(page);
-  }, [page]);
+  // useEffect(() => {
+  //   // get_discover_movie(page);
+  // }, [page]);
 
-  function MovieSkeleton() {
-    return (
-      <div className="bg-gray-100 animate-pulse rounded-xl overflow-hidden shadow-md">
-        <div className="w-full aspect-[2/3] bg-gray-200" />
-        <div className="p-4">
-          <div className="h-5 bg-gray-200 rounded mb-2 w-3/4"></div>
-          <div className="flex items-center justify-between mt-2">
-            <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // function MovieSkeleton() {
+  //   return (
+  //     <div className="bg-gray-100 animate-pulse rounded-xl overflow-hidden shadow-md">
+  //       <div className="w-full aspect-[2/3] bg-gray-200" />
+  //       <div className="p-4">
+  //         <div className="h-5 bg-gray-200 rounded mb-2 w-3/4"></div>
+  //         <div className="flex items-center justify-between mt-2">
+  //           <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+  //           <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -175,10 +183,10 @@ export default function MovieList(params: any) {
             )}
 
             {/* 加载时显示骨架屏 */}
-            {loading &&
+            {/* {loading &&
               Array.from({ length: 20 }).map((_, idx) => (
                 <MovieSkeleton key={`skeleton-${idx}`} />
-              ))}
+              ))} */}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-16 text-gray-400">
@@ -223,14 +231,25 @@ export default function MovieList(params: any) {
           </div>
         )}
 
-        {loading && <div className="text-center py-4">Loading...</div>}
-        {!hasMore && (
+        {/* 分页组件 */}
+        <div className="flex justify-center my-8">
+          <Pagination
+            current={page}
+            total={totalPages * 20} // TMDB 每页20条
+            pageSize={20}
+            showSizeChanger={false}
+            onChange={handlePageChange}
+          />
+        </div>
+
+        {/* {loading && <div className="text-center py-4">Loading...</div>} */}
+        {/* {!hasMore && (
           <div className="text-center py-4 text-gray-400">
             There is no more.
           </div>
-        )}
+        )} */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
