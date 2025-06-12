@@ -13,6 +13,20 @@ import { discover_movie } from "@/lib/api";
 const NEXT_PUBLIC_TMDB_POSTER_PATH = process.env.NEXT_PUBLIC_TMDB_POSTER_PATH;
 
 export default function MovieList(params: any) {
+  const genres = params.genres;
+  const [selectedGenre, setSelectedGenre] = useState<number | null>(
+    Number(params.selectedGenre) || null
+  );
+
+  // 分类点击时筛选（这里只是示例，实际可根据需要请求新数据或跳转）
+  const handleGenreClick = (genreId: number) => {
+    setSelectedGenre(genreId);
+    // 你可以在这里调用 get_discover_movie 或跳转到带 genre 参数的路由
+    // 例如：get_discover_movie(1, genreId);
+    // 或 window.location.href = `/movie-list?genre=${genreId}`;
+    window.location.href = `/movie-list?genre=${genreId}`;
+  };
+
   const [movies, setMovies]: any = useState(params.movies || []);
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
@@ -84,13 +98,31 @@ export default function MovieList(params: any) {
           movies. They are completely free to watch.
         </h2>
 
+        {/* 电影分类组件 */}
+        {genres.length > 0 && (
+          <div className="flex flex-wrap gap-3 mb-8">
+            {genres.map((genre: any) => (
+              <button
+                key={genre.id}
+                className={`cursor-pointer px-4 py-1 rounded-full border transition-all ${
+                  selectedGenre === genre.id
+                    ? "bg-[#7D3FCD] text-white border-[#7D3FCD]"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-[#7d3fcd1a]"
+                }`}
+                onClick={() => handleGenreClick(genre.id)}
+              >
+                {genre.name}
+              </button>
+            ))}
+          </div>
+        )}
+
         {movies?.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
             {movies.map((movie: any) => (
-              <>
+              <div key={movie.id}>
                 {movie.title && movie.poster_path && (
                   <Link
-                    key={movie.id}
                     title={movie.title}
                     href={{ pathname: `/details/${movie.id}` }}
                   >
@@ -138,7 +170,7 @@ export default function MovieList(params: any) {
                     </div>
                   </Link>
                 )}
-              </>
+              </div>
             ))}
 
             {/* 加载时显示骨架屏 */}

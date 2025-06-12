@@ -24,11 +24,7 @@ export async function generateMetadata() {
   });
 }
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { query?: string } | Promise<{ query?: string }>;
-}) {
+export default async function Home({ searchParams }: any) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams?.query || "";
   let apiUrl = "";
@@ -56,7 +52,42 @@ export default async function Home({
   }
 
   const res: any = await response.json();
-  const movies = res?.results || [];
+  let movies = res?.results || [];
 
-  return <MovieList movies={movies} />;
+  // ***********************************************************************************************************
+
+  const apiUrl2 = `${process.env.TMDB_API_BASE_URL}/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`;
+  const response2 = await fetch(apiUrl2, {
+    next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
+    // cache: 'force-cache' // 默认行为，除非指定 revalidate: 0 或 no-store
+    // cache: 'no-store' // 完全禁用缓存，每次请求都重新获取
+  });
+
+  if (!response2.ok) {
+    throw new Error(`API 请求失败: ${response2.status}`);
+  }
+
+  const res2: any = await response2.json();
+  const genres = res2.genres;
+
+  // ***********************************************************************************************************
+
+  const genre = resolvedSearchParams?.genre || "";
+  if (genre) {
+    const apiUrl3 = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genre}`;
+    const response3 = await fetch(apiUrl3, {
+      next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
+      // cache: 'force-cache' // 默认行为，除非指定 revalidate: 0 或 no-store
+      // cache: 'no-store' // 完全禁用缓存，每次请求都重新获取
+    });
+
+    if (!response3.ok) {
+      throw new Error(`API 请求失败: ${response3.status}`);
+    }
+
+    const res3: any = await response3.json();
+    movies = res3.results || [];
+  }
+
+  return <MovieList movies={movies} genres={genres} selectedGenre={genre} />;
 }
