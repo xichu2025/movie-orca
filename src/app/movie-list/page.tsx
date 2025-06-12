@@ -24,6 +24,8 @@ export async function generateMetadata() {
   });
 }
 
+export const runtime = "edge";
+
 export default async function Home({ searchParams }: any) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams?.query || "";
