@@ -8,7 +8,8 @@ import logo from "@/assets/icon/logo.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState(searchParams?.get("query") || "");
+  const query: any = searchParams?.get("query") || "";
+  const [search, setSearch] = useState(query);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

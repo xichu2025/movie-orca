@@ -51,7 +51,7 @@ export default function MovieDetails(params: any) {
         <Navbar />
         {/* <Button>Back</Button> */}
 
-        <div className="container mx-auto p-6 pt-0 rounded-lg bg-white shadow-md">
+        <div className="container mx-auto p-6 pt-0 my-6 rounded-lg bg-white shadow-md">
           {/* 标题 + 海报 */}
           <div className="flex-col items-center justify-start space-y-4 md:space-y-0 md:space-x-8">
             <h1 className="text-3xl font-bold text-gray-800">
