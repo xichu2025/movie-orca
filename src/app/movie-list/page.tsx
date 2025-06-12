@@ -24,10 +24,26 @@ export async function generateMetadata() {
   });
 }
 
-export default async function Home() {
-  const apiUrl = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${
-    process.env.TMDB_API_KEY
-  }&include_adult=false&include_video=false&language=en-US&page=${1}&sort_by=popularity.desc`;
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { query?: string } | Promise<{ query?: string }>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams?.query || "";
+  let apiUrl = "";
+
+  if (query) {
+    // 搜索
+    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/search/multi?api_key=${
+      process.env.TMDB_API_KEY
+    }&query=${query}&include_adult=false&language=en-US&page=${1}`;
+  } else {
+    // 电影列表
+    apiUrl = `${process.env.TMDB_API_BASE_URL}/3/discover/movie?api_key=${
+      process.env.TMDB_API_KEY
+    }&include_adult=false&include_video=false&language=en-US&page=${1}&sort_by=popularity.desc`;
+  }
 
   const response = await fetch(apiUrl, {
     next: { revalidate: 60 * 60 * 24 }, // 缓存时间：控制数据缓存和重新验证的关键
