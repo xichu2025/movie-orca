@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import Script from "next/script";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 
@@ -18,6 +19,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-X6CYM1Y10J"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="load_google_gtag"
+          dangerouslySetInnerHTML={{
+            __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+
+                      gtag('config', 'G-X6CYM1Y10J');
+                  `,
+          }}
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${inter.className} antialiased`}>
         <Suspense>
           <AntdRegistry>{children}</AntdRegistry>

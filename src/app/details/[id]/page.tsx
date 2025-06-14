@@ -5,7 +5,7 @@ import { getSEOTags } from "@/lib/seo";
 
 export async function generateMetadata() {
   return getSEOTags({
-    title: "Movie Details - Plot Summary/Cast/Release Information",
+    title: "MovieOrca - Watch Plot Summary/Cast/Release",
     description: `This detail page provides plot summaries, cast, release dates, etc., bringing you comprehensive film and television materials and viewing experiences.`,
     keywords: [
       "MovieOrca",
@@ -21,8 +21,8 @@ export async function generateMetadata() {
       "released time",
       "film",
     ],
-    canonical: "/details", // 页面相对路径
-    url: "/details", // 页面绝对路径
+    canonical: "https://movieorca.online/details",
+    url: "https://movieorca.online/details",
   });
 }
 

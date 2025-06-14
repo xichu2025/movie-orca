@@ -14,6 +14,7 @@ import { discover_movie } from "@/lib/api";
 const NEXT_PUBLIC_TMDB_POSTER_PATH = process.env.NEXT_PUBLIC_TMDB_POSTER_PATH;
 
 export default function MovieList(params: any) {
+  const query = params.query || "";
   const genres = params.genres;
   const [selectedGenre, setSelectedGenre] = useState<number | null>(
     Number(params.selectedGenre) || null
@@ -96,11 +97,22 @@ export default function MovieList(params: any) {
   //   );
   // }
 
+  const currentGenre = genres.find(
+    (item: any) => item.id === Number(selectedGenre)
+  );
+
   return (
     <>
       <main className="container mx-auto px-4 py-8 pt-24">
         <Navbar />
-        <h1 className="text-3xl font-bold text-center mb-8">Movies</h1>
+
+        <h1 className="text-3xl font-bold text-center mb-8">
+          {query
+            ? `Movies related to ${query}`
+            : currentGenre?.name
+            ? `Find Your Next Favorite ${currentGenre.name} Movie`
+            : "All movie libraries"}
+        </h1>
         <h2 className="text-xl text-center mb-10 w-[50%] mx-auto">
           Welcome to MovieOrca Movie Ocean World. Please look for your favorite
           movies. They are completely free to watch.
@@ -135,8 +147,26 @@ export default function MovieList(params: any) {
                     key={movie.id}
                     title={movie.title}
                     href={{ pathname: `/details/${movie.id}` }}
+                    prefetch={true}
                   >
-                    <div className="bg-white cursor-pointer rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="group bg-white cursor-pointer rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                      {/* 播放图标 */}
+                      <div className="absolute top-[28%] inset-0 flex justify-center z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg
+                          className="w-16 h-16 text-white drop-shadow-lg"
+                          fill="currentColor"
+                          viewBox="0 0 48 48"
+                        >
+                          <circle
+                            cx="24"
+                            cy="24"
+                            r="24"
+                            fill="rgba(125,63,205,0.8)" // 半透明淡紫色
+                          />
+                          <polygon points="20,16 34,24 20,32" fill="white" />
+                        </svg>
+                      </div>
+
                       {/* 电影封面 */}
                       <Image
                         src={NEXT_PUBLIC_TMDB_POSTER_PATH + movie.poster_path}

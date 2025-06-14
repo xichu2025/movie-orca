@@ -3,7 +3,7 @@ import { getSEOTags } from "@/lib/seo";
 
 export async function generateMetadata() {
   return getSEOTags({
-    title: "Movie Ocean - Free Online Viewing of the Popular Movies",
+    title: "MovieOrca - Free Online Viewing of the Popular Movies",
     description: `On the MovieOrca, discover the latest and most popular movie resources, watch high-quality film and television content for free online.`,
     keywords: [
       "MovieOrca",
@@ -18,8 +18,8 @@ export async function generateMetadata() {
       "online movie",
       "hd free",
     ],
-    canonical: "/", // 页面相对路径
-    url: "/", // 页面绝对路径
+    canonical: "https://movieorca.online/",
+    url: "https://movieorca.online/",
   });
 }
 

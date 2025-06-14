@@ -19,7 +19,7 @@ export const getSEOTags = ({
     keywords,
     canonical,
     alternates: {
-      canonical, // 注意这里应该是相对路径
+      canonical,
     },
     openGraph: {
       title,
