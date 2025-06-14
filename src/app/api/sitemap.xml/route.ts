@@ -1,6 +1,6 @@
 export const runtime = "edge";
 
-export default async function GET() {
+export async function GET() {
   const hostname =
     process.env.NEXT_PUBLIC_API_BASE_URL || "https://movieorca.online";
   const urls = [
