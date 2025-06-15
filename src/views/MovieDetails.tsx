@@ -47,7 +47,7 @@ export default function MovieDetails(params: any) {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-start pt-20">
+      <main className="flex min-h-dvh flex-col items-center justify-start pt-20">
         <Navbar />
         {/* <Button>Back</Button> */}
 

@@ -6,7 +6,7 @@ import banner from "@/assets/img/banner.png";
 const HeroSection = () => {
   return (
     <section
-      className="relative h-[100vh] overflow-hidden"
+      className="relative h-dvh overflow-hidden"
       style={{
         backgroundImage: `url(${banner.src})`,
         backgroundSize: "cover",

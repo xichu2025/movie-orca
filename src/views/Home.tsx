@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const HomePage = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="bg-gray-900 text-white min-h-dvh">
       <Navbar />
 
       <main>
